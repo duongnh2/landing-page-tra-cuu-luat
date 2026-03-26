@@ -1,400 +1,590 @@
 <!DOCTYPE html>
 
-<html class="light" lang="vi"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LUẬT ĐẤU THẦU - Hệ thống tra cứu thông minh</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "secondary-container": "#d5e0f7",
-              "primary-fixed-dim": "#a7c8ff",
-              "tertiary": "#321b00",
-              "on-tertiary-fixed-variant": "#633f0f",
-              "on-error-container": "#93000a",
-              "surface": "#f7fafc",
-              "on-secondary-fixed": "#111c2c",
-              "outline": "#74777f",
-              "inverse-surface": "#2d3133",
-              "on-primary-fixed": "#001b3c",
-              "outline-variant": "#c4c6cf",
-              "on-secondary": "#ffffff",
-              "surface-dim": "#d7dadc",
-              "surface-container-highest": "#e0e3e5",
-              "tertiary-fixed-dim": "#f2bc82",
-              "secondary-fixed-dim": "#bcc7dd",
-              "on-tertiary-fixed": "#2b1700",
-              "on-surface": "#181c1e",
-              "surface-container": "#ebeef0",
-              "inverse-primary": "#a7c8ff",
-              "background": "#f7fafc",
-              "on-surface-variant": "#43474e",
-              "tertiary-fixed": "#ffddba",
-              "primary-fixed": "#d5e3ff",
-              "error": "#ba1a1a",
-              "on-primary-fixed-variant": "#1f477b",
-              "on-error": "#ffffff",
-              "on-primary": "#ffffff",
-              "error-container": "#ffdad6",
-              "on-tertiary-container": "#c6955e",
-              "surface-variant": "#e0e3e5",
-              "surface-container-lowest": "#ffffff",
-              "secondary-fixed": "#d8e3fa",
-              "primary-container": "#043669",
-              "surface-bright": "#f7fafc",
-              "on-secondary-container": "#586377",
-              "primary": "#002045",
-              "surface-tint": "#3a5f94",
-              "on-tertiary": "#ffffff",
-              "tertiary-container": "#4f2e00",
-              "secondary": "#545f72",
-              "on-secondary-fixed-variant": "#3c475a",
-              "surface-container-high": "#e5e9eb",
-              "on-primary-container": "#7ca0d9",
-              "surface-container-low": "#f1f4f6",
-              "inverse-on-surface": "#eef1f3",
-              "on-background": "#181c1e"
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUẬT ĐẤU THẦU - Hệ thống tra cứu thông minh</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="./chatbot.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#d5e0f7",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "tertiary": "#321b00",
+                        "on-tertiary-fixed-variant": "#633f0f",
+                        "on-error-container": "#93000a",
+                        "surface": "#f7fafc",
+                        "on-secondary-fixed": "#111c2c",
+                        "outline": "#74777f",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed": "#001b3c",
+                        "outline-variant": "#c4c6cf",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d7dadc",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed-dim": "#f2bc82",
+                        "secondary-fixed-dim": "#bcc7dd",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-surface": "#181c1e",
+                        "surface-container": "#ebeef0",
+                        "inverse-primary": "#a7c8ff",
+                        "background": "#f7fafc",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-fixed": "#ffddba",
+                        "primary-fixed": "#d5e3ff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#1f477b",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#c6955e",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d8e3fa",
+                        "primary-container": "#043669",
+                        "surface-bright": "#f7fafc",
+                        "on-secondary-container": "#586377",
+                        "primary": "#002045",
+                        "surface-tint": "#3a5f94",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#4f2e00",
+                        "secondary": "#545f72",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "surface-container-high": "#e5e9eb",
+                        "on-primary-container": "#7ca0d9",
+                        "surface-container-low": "#f1f4f6",
+                        "inverse-on-surface": "#eef1f3",
+                        "on-background": "#181c1e"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
             },
-            fontFamily: {
-              "headline": ["Manrope"],
-              "body": ["Inter"],
-              "label": ["Inter"]
-            },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-          },
-        },
-      }
+        }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
         .glass-effect {
             background: rgba(213, 224, 247, 0.8);
             backdrop-filter: blur(12px);
         }
+
         .primary-gradient {
             background: linear-gradient(135deg, #002045 0%, #043669 100%);
         }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
 </head>
+
 <body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
-<!-- TopAppBar -->
-<header class="bg-[#ffffff] dark:bg-slate-900 border-b border-[#c4c6cf]/15 docked full-width top-0 sticky z-50">
-<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-[#1A365D] dark:text-blue-400 text-2xl" data-icon="gavel">gavel</span>
-<span class="text-xl font-black text-[#1A365D] dark:text-white uppercase tracking-widest font-headline">LUẬT ĐẤU THẦU</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-[#1A365D] dark:text-blue-300 font-bold border-b-2 border-[#1A365D] py-1 transition-colors duration-200" href="#">Trang chủ</a>
-<a class="text-[#43474e] dark:text-slate-400 font-medium hover:text-[#1A365D] transition-colors duration-200" href="#">Thư viện</a>
-<a class="text-[#43474e] dark:text-slate-400 font-medium hover:text-[#1A365D] transition-colors duration-200" href="#">Tin tức</a>
-</nav>
-<button class="bg-[#1A365D] text-white px-5 py-2 rounded-md font-bold text-sm tracking-tight scale-95 hover:scale-100 duration-150 ease-in-out">
+    <!-- TopAppBar -->
+    <header class="bg-[#ffffff] dark:bg-slate-900 border-b border-[#c4c6cf]/15 docked full-width top-0 sticky z-50">
+        <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[#1A365D] dark:text-blue-400 text-2xl"
+                    data-icon="gavel">gavel</span>
+                <span
+                    class="text-xl font-black text-[#1A365D] dark:text-white uppercase tracking-widest font-headline">LUẬT
+                    ĐẤU THẦU</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-[#1A365D] dark:text-blue-300 font-bold border-b-2 border-[#1A365D] py-1 transition-colors duration-200"
+                    href="#">Trang chủ</a>
+                <a class="text-[#43474e] dark:text-slate-400 font-medium hover:text-[#1A365D] transition-colors duration-200"
+                    href="#">Thư viện</a>
+                <a class="text-[#43474e] dark:text-slate-400 font-medium hover:text-[#1A365D] transition-colors duration-200"
+                    href="#">Tin tức</a>
+            </nav>
+            <button
+                class="bg-[#1A365D] text-white px-5 py-2 rounded-md font-bold text-sm tracking-tight scale-95 hover:scale-100 duration-150 ease-in-out">
                 Tra cứu
             </button>
-</div>
-</header>
-<main>
-<!-- Section A: Hero Section -->
-<section class="relative pt-20 pb-32 px-6 overflow-hidden bg-surface-bright">
-<div class="absolute inset-0 z-0 opacity-10">
-<div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-fixed rounded-full blur-[120px]"></div>
-<div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary-fixed rounded-full blur-[100px]"></div>
-</div>
-<div class="relative z-10 max-w-5xl mx-auto text-center">
-<h1 class="font-headline font-extrabold text-4xl md:text-6xl text-on-surface tracking-tight leading-[1.1] mb-6">
+        </div>
+    </header>
+    <main>
+        <!-- Section A: Hero Section -->
+        <section class="relative pt-20 pb-32 px-6 overflow-hidden bg-surface-bright">
+            <div class="absolute inset-0 z-0 opacity-10">
+                <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-fixed rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary-fixed rounded-full blur-[100px]"></div>
+            </div>
+            <div class="relative z-10 max-w-5xl mx-auto text-center">
+                <h1
+                    class="font-headline font-extrabold text-4xl md:text-6xl text-on-surface tracking-tight leading-[1.1] mb-6">
                     Tra cứu văn bản pháp luật đấu thầu <span class="text-primary">nhanh chóng &amp; chính xác</span>
-</h1>
-<p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-                    Hỏi – đáp trực tiếp dựa trên Luật Đấu thầu, Nghị định và Thông tư mới nhất với sự hỗ trợ từ trí tuệ nhân tạo chuyên sâu pháp lý.
+                </h1>
+                <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+                    Hỏi – đáp trực tiếp dựa trên Luật Đấu thầu, Nghị định và Thông tư mới nhất với sự hỗ trợ từ trí tuệ
+                    nhân tạo chuyên sâu pháp lý.
                 </p>
-<!-- Smart Search Bar -->
-<div class="max-w-3xl mx-auto group">
-<div class="bg-surface-container-lowest shadow-sm p-2 rounded-xl border border-outline-variant/15 flex flex-col md:flex-row items-stretch gap-2 transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-primary/20">
-<div class="flex-grow flex items-center px-4">
-<span class="material-symbols-outlined text-outline mr-3" data-icon="search">search</span>
-<input class="w-full bg-transparent border-none focus:ring-0 py-4 text-on-surface placeholder:text-on-surface-variant/60 font-medium" placeholder="Nhập câu hỏi của bạn... ví dụ: Điều kiện chỉ định thầu là gì?" type="text"/>
-</div>
-<button class="primary-gradient text-on-primary px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                <!-- Smart Search Bar -->
+                <div class="max-w-3xl mx-auto group">
+                    <div
+                        class="bg-surface-container-lowest shadow-sm p-2 rounded-xl border border-outline-variant/15 flex flex-col md:flex-row items-stretch gap-2 transition-all duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-primary/20">
+                        <div class="flex-grow flex items-center px-4">
+                            <span class="material-symbols-outlined text-outline mr-3" data-icon="search">search</span>
+                            <input
+                                class="w-full bg-transparent border-none focus:ring-0 py-4 text-on-surface placeholder:text-on-surface-variant/60 font-medium"
+                                placeholder="Nhập câu hỏi của bạn... ví dụ: Điều kiện chỉ định thầu là gì?"
+                                type="text" />
+                        </div>
+                        <button
+                            class="primary-gradient text-on-primary px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
                             Tra cứu ngay
                             <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-<!-- Section D: Example Questions (Integrated for context) -->
-<div class="mt-6 flex flex-wrap justify-center gap-3">
-<span class="text-sm font-semibold text-on-surface-variant/70 uppercase tracking-wider py-1">Gợi ý:</span>
-<button class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1.5 rounded-sm text-sm font-medium hover:bg-secondary-container transition-colors">Chỉ định thầu là gì?</button>
-<button class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1.5 rounded-sm text-sm font-medium hover:bg-secondary-container transition-colors">Tiêu chí đánh giá HSDT?</button>
-<button class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1.5 rounded-sm text-sm font-medium hover:bg-secondary-container transition-colors">Hành vi bị cấm?</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Section B: Key Features - Bento Grid Style -->
-<section class="py-24 px-6 max-w-7xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-<div class="md:col-span-2 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between hover:bg-surface-container transition-colors">
-<div>
-<div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
-</div>
-<h3 class="font-headline font-bold text-2xl mb-3">AI Hỏi &amp; Đáp</h3>
-<p class="text-on-surface-variant leading-relaxed">Hệ thống AI được huấn luyện trên hàng ngàn văn bản pháp quy để trả lời chính xác các tình huống đấu thầu thực tế của bạn.</p>
-</div>
-</div>
-<div class="bg-surface-container-low p-8 rounded-xl flex flex-col hover:bg-surface-container transition-colors">
-<div class="w-12 h-12 bg-secondary-fixed rounded-lg flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-on-secondary-fixed-variant" data-icon="manage_search">manage_search</span>
-</div>
-<h3 class="font-headline font-bold text-xl mb-3">Tra cứu từ khóa</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Tìm kiếm nhanh chóng mọi điều khoản, nghị định chỉ với vài ký tự.</p>
-</div>
-<div class="bg-surface-container-low p-8 rounded-xl flex flex-col hover:bg-surface-container transition-colors">
-<div class="w-12 h-12 bg-tertiary-fixed rounded-lg flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-on-tertiary-fixed-variant" data-icon="history_edu">history_edu</span>
-</div>
-<h3 class="font-headline font-bold text-xl mb-3">Trích dẫn pháp lý</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Mọi câu trả lời đều đi kèm nguồn gốc điều khoản cụ thể, minh bạch.</p>
-</div>
-<div class="md:col-span-4 bg-primary text-on-primary p-8 rounded-xl flex flex-col md:flex-row items-center justify-between gap-8">
-<div class="max-w-xl">
-<h3 class="font-headline font-bold text-2xl mb-2">Cập nhật Luật Đấu thầu 2023 mới nhất</h3>
-<p class="opacity-80">Đảm bảo mọi thông tin bạn tra cứu đều tuân thủ các quy định hiện hành vừa có hiệu lực.</p>
-</div>
-<button class="bg-surface-container-lowest text-primary px-6 py-3 rounded-md font-bold whitespace-nowrap">Xem thay đổi mới</button>
-</div>
-</div>
-</section>
-<!-- Section F: Mockup Answer Box - High-End UI -->
-<section class="py-24 bg-surface-container-low px-6">
-<div class="max-w-4xl mx-auto">
-<div class="text-center mb-12">
-<span class="text-primary font-bold tracking-widest text-xs uppercase bg-primary-fixed px-3 py-1 rounded-sm mb-4 inline-block">Trải nghiệm thực tế</span>
-<h2 class="font-headline font-extrabold text-3xl">Kết quả tra cứu thông minh</h2>
-</div>
-<div class="glass-effect rounded-2xl border border-white/40 shadow-2xl overflow-hidden">
-<div class="p-6 bg-white/60 border-b border-white/20 flex items-center gap-3">
-<div class="w-8 h-8 rounded-full primary-gradient flex items-center justify-center">
-<span class="material-symbols-outlined text-[16px] text-white" data-icon="auto_awesome">auto_awesome</span>
-</div>
-<span class="font-bold text-on-surface">Phân tích pháp lý AI</span>
-</div>
-<div class="p-8">
-<div class="flex gap-4 mb-6">
-<span class="text-outline material-symbols-outlined" data-icon="format_quote">format_quote</span>
-<p class="text-xl font-headline font-bold text-primary">Các trường hợp được áp dụng chỉ định thầu?</p>
-</div>
-<div class="space-y-6 text-on-surface leading-relaxed">
-<p>Theo <span class="bg-primary-fixed text-primary px-1 font-semibold">Khoản 1 Điều 23 Luật Đấu thầu 2023</span>, các trường hợp chỉ định thầu bao gồm các tình huống khẩn cấp hoặc đặc thù sau:</p>
-<ul class="space-y-4 pl-4 border-l-2 border-primary/10">
-<li class="flex gap-3">
-<span class="text-primary font-bold">a)</span>
-<span>Gói thầu cần thực hiện để khắc phục ngay hoặc để xử lý kịp thời hậu quả gây ra do thiên tai, hỏa hoạn, tai nạn bất ngờ...</span>
-</li>
-<li class="flex gap-3">
-<span class="text-primary font-bold">b)</span>
-<span>Gói thầu cung cấp dịch vụ tư vấn, phi tư vấn, hàng hóa, xây lắp cần triển khai ngay để bảo đảm bí mật nhà nước...</span>
-</li>
-<li class="flex gap-3">
-<span class="text-primary font-bold">c)</span>
-<span>Gói thầu cung cấp dịch vụ tư vấn phải mua từ nhà thầu đã thực hiện trước đó để bảo đảm tính tương thích về công nghệ...</span>
-</li>
-</ul>
-<div class="pt-6 border-t border-outline-variant/20 flex flex-wrap gap-4">
-<div class="flex items-center gap-2 bg-white/50 px-3 py-1.5 rounded-lg border border-white/40 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary" data-icon="description">description</span>
-<span class="text-xs font-bold text-on-surface-variant">Luật Đấu thầu 22/2023/QH15</span>
-</div>
-<div class="flex items-center gap-2 bg-white/50 px-3 py-1.5 rounded-lg border border-white/40 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary" data-icon="link">link</span>
-<span class="text-xs font-bold text-on-surface-variant">Nghị định 24/2024/NĐ-CP</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Section C: Workflow -->
-<section class="py-24 px-6">
-<div class="max-w-7xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-<!-- Connector line for desktop -->
-<div class="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-outline-variant/30 z-0"></div>
-<div class="relative z-10 text-center">
-<div class="w-20 h-20 bg-surface-container-lowest border-4 border-primary mx-auto rounded-full flex items-center justify-center mb-6 shadow-md">
-<span class="text-2xl font-black text-primary">01</span>
-</div>
-<h4 class="font-headline font-bold text-xl mb-2">Nhập câu hỏi</h4>
-<p class="text-on-surface-variant px-4">Mô tả vướng mắc hoặc tình huống thầu bạn đang gặp phải.</p>
-</div>
-<div class="relative z-10 text-center">
-<div class="w-20 h-20 bg-surface-container-lowest border-4 border-primary mx-auto rounded-full flex items-center justify-center mb-6 shadow-md">
-<span class="text-2xl font-black text-primary">02</span>
-</div>
-<h4 class="font-headline font-bold text-xl mb-2">Phân tích văn bản</h4>
-<p class="text-on-surface-variant px-4">AI đối chiếu với cơ sở dữ liệu Luật, Nghị định và Thông tư mới nhất.</p>
-</div>
-<div class="relative z-10 text-center">
-<div class="w-20 h-20 bg-surface-container-lowest border-4 border-primary mx-auto rounded-full flex items-center justify-center mb-6 shadow-md">
-<span class="text-2xl font-black text-primary">03</span>
-</div>
-<h4 class="font-headline font-bold text-xl mb-2">Trả lời &amp; Trích dẫn</h4>
-<p class="text-on-surface-variant px-4">Nhận phản hồi chính xác kèm trích dẫn điều khoản pháp lý cụ thể.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Section E: Benefits -->
-<section class="py-24 px-6 bg-primary overflow-hidden relative">
-<div class="absolute inset-0 opacity-20 pointer-events-none">
-<img class="w-full h-full object-cover grayscale mix-blend-overlay" data-alt="dramatic legal library or neoclassical courthouse interior with pillars and warm ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjV82ospl1grsHpsW6BC-m41s9DXYN8tb8xH8t3EgzLoONeroLamhZA9QUj4txRNhcMwIia8CmFLoTlv5r2gRcW9JuYFvx3ZmlIRN2xTWeYmgtGEP_6WEG1OhDgsSKS12OswYLHhh4be5TsgPJnz83ynr5cEQUDYKTADmn_7pLqtl2kDcf2xAghRQXSE7JQpUX70zfXDj4bjnFbHZrVIIINnLlYB8Nx49ZSzPfJPO2nsWH1HL--wOofpOxJS8DxLxnNRuyBmG1saK6"/>
-</div>
-<div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-<div>
-<h2 class="font-headline font-extrabold text-4xl text-on-primary mb-8">Giải pháp tối ưu cho doanh nghiệp &amp; nhà thầu</h2>
-<div class="space-y-6">
-<div class="flex items-start gap-4">
-<div class="w-10 h-10 bg-on-primary/10 rounded-full flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-on-primary" data-icon="speed">speed</span>
-</div>
-<div>
-<h5 class="text-on-primary font-bold text-lg">Tiết kiệm thời gian</h5>
-<p class="text-on-primary/70">Giảm 90% thời gian lật giở từng trang văn bản luật truyền thống.</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="w-10 h-10 bg-on-primary/10 rounded-full flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-on-primary" data-icon="security">security</span>
-</div>
-<div>
-<h5 class="text-on-primary font-bold text-lg">Giảm rủi ro</h5>
-<p class="text-on-primary/70">Tránh các sai sót pháp lý nghiêm trọng dẫn đến hủy thầu hoặc bị cấm thầu.</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="w-10 h-10 bg-on-primary/10 rounded-full flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-on-primary" data-icon="insights">insights</span>
-</div>
-<div>
-<h5 class="text-on-primary font-bold text-lg">Hỗ trợ ra quyết định</h5>
-<p class="text-on-primary/70">Cung cấp cơ sở pháp lý vững chắc cho các chiến lược dự thầu của bạn.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-1 rounded-xl shadow-2xl">
-<img class="rounded-lg w-full" data-alt="modern office workspace with professional digital devices and minimalist aesthetic documents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbmLYKpbBV02G6lffVtto2v8cSb1kaUV9MOe4f-fZMYLtgqBDbuTnvx6LG_pINqnaSehDZuKgKf_hQQvJf4GUvPWHYa981FZf7_G21Wi2SUuK8RfGJodVbhA5AoQyls5MNawbjItL1uUCzpIetE3g9PQAggp4OU4LzyQ-N02CQtylj3Y0AK9mFg6xLz8_HhVQ0Y1GSLt2bEnJu-uUBXv2Zy-TGK2jy8gY-JgGidzDxfnJQS7l2cOyEChoHZfMv7gWH1PPz4tbpblU5"/>
-</div>
-</div>
-</section>
-<!-- Section G: Latest Legal News & Updates -->
-<section class="py-24 px-6 bg-surface-container-low">
-<div class="max-w-7xl mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-<div>
-<span class="text-primary font-bold tracking-widest text-xs uppercase bg-primary-fixed px-3 py-1 rounded-sm mb-4 inline-block">Cập nhật mới nhất</span>
-<h2 class="font-headline font-extrabold text-3xl md:text-4xl">Tin tức &amp; Cập nhật luật mới nhất</h2>
-</div>
-<a class="text-primary font-bold flex items-center gap-1 hover:underline underline-offset-4" href="#">
-                    Xem tất cả tin tức
-                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- News Card 1 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-<div class="p-6 flex-grow">
-<span class="text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-sm mb-4 inline-block">Nghị định mới</span>
-<h3 class="font-headline font-bold text-xl mb-3 leading-tight group-hover:text-primary transition-colors">Điểm mới trong Nghị định hướng dẫn Luật Đấu thầu 2023</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">Nghị định 24/2024/NĐ-CP vừa ban hành mang lại nhiều thay đổi quan trọng về quy trình lựa chọn nhà thầu qua mạng và các trường hợp chỉ định thầu...</p>
-</div>
-<div class="px-6 pb-6 pt-2 border-t border-outline-variant/10 flex justify-between items-center">
-<span class="text-xs text-outline font-medium">15/05/2024</span>
-<a class="text-sm font-bold text-primary flex items-center gap-1" href="#">
-                        Đọc tiếp
-                        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
-</a>
-</div>
-</div>
-<!-- News Card 2 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-<div class="p-6 flex-grow">
-<span class="text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-sm mb-4 inline-block">Thông tư</span>
-<h3 class="font-headline font-bold text-xl mb-3 leading-tight group-hover:text-primary transition-colors">Hướng dẫn lập hồ sơ mời thầu qua mạng (E-HSMT) mới</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">Bộ Kế hoạch và Đầu tư vừa công bố mẫu hồ sơ mời thầu mới nhất áp dụng cho hệ thống mạng đấu thầu quốc gia, tối ưu hóa quy trình nhập liệu...</p>
-</div>
-<div class="px-6 pb-6 pt-2 border-t border-outline-variant/10 flex justify-between items-center">
-<span class="text-xs text-outline font-medium">10/05/2024</span>
-<a class="text-sm font-bold text-primary flex items-center gap-1" href="#">
-                        Đọc tiếp
-                        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
-</a>
-</div>
-</div>
-<!-- News Card 3 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-<div class="p-6 flex-grow">
-<span class="text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-sm mb-4 inline-block">Phân tích</span>
-<h3 class="font-headline font-bold text-xl mb-3 leading-tight group-hover:text-primary transition-colors">Giải đáp vướng mắc về bảo lãnh dự thầu theo luật mới</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">Chuyên gia pháp lý phân tích các tình huống thực tế về việc hoàn trả bảo lãnh dự thầu và các sai sót thường gặp của nhà thầu...</p>
-</div>
-<div class="px-6 pb-6 pt-2 border-t border-outline-variant/10 flex justify-between items-center">
-<span class="text-xs text-outline font-medium">02/05/2024</span>
-<a class="text-sm font-bold text-primary flex items-center gap-1" href="#">
-                        Đọc tiếp
-                        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-[#f1f4f6] dark:bg-slate-950 border-t border-[#c4c6cf]/15 full-width py-12 px-6">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-<div class="lg:col-span-2">
-<div class="flex items-center gap-2 mb-6">
-<span class="material-symbols-outlined text-[#1A365D]" data-icon="gavel">gavel</span>
-<span class="text-lg font-bold text-[#1A365D] font-headline">THE DIGITAL JURIST</span>
-</div>
-<p class="font-['Inter'] text-sm leading-relaxed text-[#43474e] dark:text-slate-500 max-w-sm mb-6">
-                    Hệ thống tra cứu Luận Đấu Thầu thông minh, ứng dụng công nghệ AI để đơn giản hóa kiến thức pháp luật cho cộng đồng.
+                        </button>
+                    </div>
+                    <!-- Section D: Example Questions (Integrated for context) -->
+                    <div class="mt-6 flex flex-wrap justify-center gap-3">
+                        <span class="text-sm font-semibold text-on-surface-variant/70 uppercase tracking-wider py-1">Gợi
+                            ý:</span>
+                        <button
+                            class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1.5 rounded-sm text-sm font-medium hover:bg-secondary-container transition-colors">Chỉ
+                            định thầu là gì?</button>
+                        <button
+                            class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1.5 rounded-sm text-sm font-medium hover:bg-secondary-container transition-colors">Tiêu
+                            chí đánh giá HSDT?</button>
+                        <button
+                            class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1.5 rounded-sm text-sm font-medium hover:bg-secondary-container transition-colors">Hành
+                            vi bị cấm?</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section B: Key Features - Bento Grid Style -->
+        <section class="py-24 px-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div
+                    class="md:col-span-2 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between hover:bg-surface-container transition-colors">
+                    <div>
+                        <div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary"
+                                data-icon="psychology">psychology</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-2xl mb-3">AI Hỏi &amp; Đáp</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Hệ thống AI được huấn luyện trên hàng ngàn
+                            văn bản pháp quy để trả lời chính xác các tình huống đấu thầu thực tế của bạn.</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-container-low p-8 rounded-xl flex flex-col hover:bg-surface-container transition-colors">
+                    <div class="w-12 h-12 bg-secondary-fixed rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-on-secondary-fixed-variant"
+                            data-icon="manage_search">manage_search</span>
+                    </div>
+                    <h3 class="font-headline font-bold text-xl mb-3">Tra cứu từ khóa</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Tìm kiếm nhanh chóng mọi điều khoản, nghị
+                        định chỉ với vài ký tự.</p>
+                </div>
+                <div
+                    class="bg-surface-container-low p-8 rounded-xl flex flex-col hover:bg-surface-container transition-colors">
+                    <div class="w-12 h-12 bg-tertiary-fixed rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-on-tertiary-fixed-variant"
+                            data-icon="history_edu">history_edu</span>
+                    </div>
+                    <h3 class="font-headline font-bold text-xl mb-3">Trích dẫn pháp lý</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Mọi câu trả lời đều đi kèm nguồn gốc điều
+                        khoản cụ thể, minh bạch.</p>
+                </div>
+                <div
+                    class="md:col-span-4 bg-primary text-on-primary p-8 rounded-xl flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="max-w-xl">
+                        <h3 class="font-headline font-bold text-2xl mb-2">Cập nhật Luật Đấu thầu 2023 mới nhất</h3>
+                        <p class="opacity-80">Đảm bảo mọi thông tin bạn tra cứu đều tuân thủ các quy định hiện hành vừa
+                            có hiệu lực.</p>
+                    </div>
+                    <button
+                        class="bg-surface-container-lowest text-primary px-6 py-3 rounded-md font-bold whitespace-nowrap">Xem
+                        thay đổi mới</button>
+                </div>
+            </div>
+        </section>
+        <!-- Section F: Mockup Answer Box - High-End UI -->
+        <section class="py-24 bg-surface-container-low px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span
+                        class="text-primary font-bold tracking-widest text-xs uppercase bg-primary-fixed px-3 py-1 rounded-sm mb-4 inline-block">Trải
+                        nghiệm thực tế</span>
+                    <h2 class="font-headline font-extrabold text-3xl">Kết quả tra cứu thông minh</h2>
+                </div>
+                <div class="glass-effect rounded-2xl border border-white/40 shadow-2xl overflow-hidden">
+                    <div class="p-6 bg-white/60 border-b border-white/20 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full primary-gradient flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[16px] text-white"
+                                data-icon="auto_awesome">auto_awesome</span>
+                        </div>
+                        <span class="font-bold text-on-surface">Phân tích pháp lý AI</span>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex gap-4 mb-6">
+                            <span class="text-outline material-symbols-outlined"
+                                data-icon="format_quote">format_quote</span>
+                            <p class="text-xl font-headline font-bold text-primary">Các trường hợp được áp dụng chỉ định
+                                thầu?</p>
+                        </div>
+                        <div class="space-y-6 text-on-surface leading-relaxed">
+                            <p>Theo <span class="bg-primary-fixed text-primary px-1 font-semibold">Khoản 1 Điều 23 Luật
+                                    Đấu thầu 2023</span>, các trường hợp chỉ định thầu bao gồm các tình huống khẩn cấp
+                                hoặc đặc thù sau:</p>
+                            <ul class="space-y-4 pl-4 border-l-2 border-primary/10">
+                                <li class="flex gap-3">
+                                    <span class="text-primary font-bold">a)</span>
+                                    <span>Gói thầu cần thực hiện để khắc phục ngay hoặc để xử lý kịp thời hậu quả gây ra
+                                        do thiên tai, hỏa hoạn, tai nạn bất ngờ...</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-primary font-bold">b)</span>
+                                    <span>Gói thầu cung cấp dịch vụ tư vấn, phi tư vấn, hàng hóa, xây lắp cần triển khai
+                                        ngay để bảo đảm bí mật nhà nước...</span>
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="text-primary font-bold">c)</span>
+                                    <span>Gói thầu cung cấp dịch vụ tư vấn phải mua từ nhà thầu đã thực hiện trước đó để
+                                        bảo đảm tính tương thích về công nghệ...</span>
+                                </li>
+                            </ul>
+                            <div class="pt-6 border-t border-outline-variant/20 flex flex-wrap gap-4">
+                                <div
+                                    class="flex items-center gap-2 bg-white/50 px-3 py-1.5 rounded-lg border border-white/40 shadow-sm">
+                                    <span class="material-symbols-outlined text-sm text-primary"
+                                        data-icon="description">description</span>
+                                    <span class="text-xs font-bold text-on-surface-variant">Luật Đấu thầu
+                                        22/2023/QH15</span>
+                                </div>
+                                <div
+                                    class="flex items-center gap-2 bg-white/50 px-3 py-1.5 rounded-lg border border-white/40 shadow-sm">
+                                    <span class="material-symbols-outlined text-sm text-primary"
+                                        data-icon="link">link</span>
+                                    <span class="text-xs font-bold text-on-surface-variant">Nghị định
+                                        24/2024/NĐ-CP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section C: Workflow -->
+        <section class="py-24 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                    <!-- Connector line for desktop -->
+                    <div class="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-outline-variant/30 z-0"></div>
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-20 h-20 bg-surface-container-lowest border-4 border-primary mx-auto rounded-full flex items-center justify-center mb-6 shadow-md">
+                            <span class="text-2xl font-black text-primary">01</span>
+                        </div>
+                        <h4 class="font-headline font-bold text-xl mb-2">Nhập câu hỏi</h4>
+                        <p class="text-on-surface-variant px-4">Mô tả vướng mắc hoặc tình huống thầu bạn đang gặp phải.
+                        </p>
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-20 h-20 bg-surface-container-lowest border-4 border-primary mx-auto rounded-full flex items-center justify-center mb-6 shadow-md">
+                            <span class="text-2xl font-black text-primary">02</span>
+                        </div>
+                        <h4 class="font-headline font-bold text-xl mb-2">Phân tích văn bản</h4>
+                        <p class="text-on-surface-variant px-4">AI đối chiếu với cơ sở dữ liệu Luật, Nghị định và Thông
+                            tư mới nhất.</p>
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-20 h-20 bg-surface-container-lowest border-4 border-primary mx-auto rounded-full flex items-center justify-center mb-6 shadow-md">
+                            <span class="text-2xl font-black text-primary">03</span>
+                        </div>
+                        <h4 class="font-headline font-bold text-xl mb-2">Trả lời &amp; Trích dẫn</h4>
+                        <p class="text-on-surface-variant px-4">Nhận phản hồi chính xác kèm trích dẫn điều khoản pháp lý
+                            cụ thể.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section E: Benefits -->
+        <section class="py-24 px-6 bg-primary overflow-hidden relative">
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <img class="w-full h-full object-cover grayscale mix-blend-overlay"
+                    data-alt="dramatic legal library or neoclassical courthouse interior with pillars and warm ambient light"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjV82ospl1grsHpsW6BC-m41s9DXYN8tb8xH8t3EgzLoONeroLamhZA9QUj4txRNhcMwIia8CmFLoTlv5r2gRcW9JuYFvx3ZmlIRN2xTWeYmgtGEP_6WEG1OhDgsSKS12OswYLHhh4be5TsgPJnz83ynr5cEQUDYKTADmn_7pLqtl2kDcf2xAghRQXSE7JQpUX70zfXDj4bjnFbHZrVIIINnLlYB8Nx49ZSzPfJPO2nsWH1HL--wOofpOxJS8DxLxnNRuyBmG1saK6" />
+            </div>
+            <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-headline font-extrabold text-4xl text-on-primary mb-8">Giải pháp tối ưu cho doanh
+                        nghiệp &amp; nhà thầu</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 bg-on-primary/10 rounded-full flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-on-primary" data-icon="speed">speed</span>
+                            </div>
+                            <div>
+                                <h5 class="text-on-primary font-bold text-lg">Tiết kiệm thời gian</h5>
+                                <p class="text-on-primary/70">Giảm 90% thời gian lật giở từng trang văn bản luật truyền
+                                    thống.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 bg-on-primary/10 rounded-full flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-on-primary"
+                                    data-icon="security">security</span>
+                            </div>
+                            <div>
+                                <h5 class="text-on-primary font-bold text-lg">Giảm rủi ro</h5>
+                                <p class="text-on-primary/70">Tránh các sai sót pháp lý nghiêm trọng dẫn đến hủy thầu
+                                    hoặc bị cấm thầu.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 bg-on-primary/10 rounded-full flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-on-primary"
+                                    data-icon="insights">insights</span>
+                            </div>
+                            <div>
+                                <h5 class="text-on-primary font-bold text-lg">Hỗ trợ ra quyết định</h5>
+                                <p class="text-on-primary/70">Cung cấp cơ sở pháp lý vững chắc cho các chiến lược dự
+                                    thầu của bạn.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-1 rounded-xl shadow-2xl">
+                    <img class="rounded-lg w-full"
+                        data-alt="modern office workspace with professional digital devices and minimalist aesthetic documents"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbmLYKpbBV02G6lffVtto2v8cSb1kaUV9MOe4f-fZMYLtgqBDbuTnvx6LG_pINqnaSehDZuKgKf_hQQvJf4GUvPWHYa981FZf7_G21Wi2SUuK8RfGJodVbhA5AoQyls5MNawbjItL1uUCzpIetE3g9PQAggp4OU4LzyQ-N02CQtylj3Y0AK9mFg6xLz8_HhVQ0Y1GSLt2bEnJu-uUBXv2Zy-TGK2jy8gY-JgGidzDxfnJQS7l2cOyEChoHZfMv7gWH1PPz4tbpblU5" />
+                </div>
+            </div>
+        </section>
+        <!-- Section G: Latest Legal News & Updates -->
+        <section class="py-24 px-6 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                    <div>
+                        <span
+                            class="text-primary font-bold tracking-widest text-xs uppercase bg-primary-fixed px-3 py-1 rounded-sm mb-4 inline-block">Cập
+                            nhật mới nhất</span>
+                        <h2 class="font-headline font-extrabold text-3xl md:text-4xl">Tin tức &amp; Cập nhật luật mới
+                            nhất</h2>
+                    </div>
+                    <a class="text-primary font-bold flex items-center gap-1 hover:underline underline-offset-4"
+                        href="#">
+                        Xem tất cả tin tức
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- News Card 1 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                        <div class="p-6 flex-grow">
+                            <span
+                                class="text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-sm mb-4 inline-block">Nghị
+                                định mới</span>
+                            <h3
+                                class="font-headline font-bold text-xl mb-3 leading-tight group-hover:text-primary transition-colors">
+                                Điểm mới trong Nghị định hướng dẫn Luật Đấu thầu 2023</h3>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">Nghị định
+                                24/2024/NĐ-CP vừa ban hành mang lại nhiều thay đổi quan trọng về quy trình lựa chọn nhà
+                                thầu qua mạng và các trường hợp chỉ định thầu...</p>
+                        </div>
+                        <div
+                            class="px-6 pb-6 pt-2 border-t border-outline-variant/10 flex justify-between items-center">
+                            <span class="text-xs text-outline font-medium">15/05/2024</span>
+                            <a class="text-sm font-bold text-primary flex items-center gap-1" href="#">
+                                Đọc tiếp
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="chevron_right">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- News Card 2 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                        <div class="p-6 flex-grow">
+                            <span
+                                class="text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-sm mb-4 inline-block">Thông
+                                tư</span>
+                            <h3
+                                class="font-headline font-bold text-xl mb-3 leading-tight group-hover:text-primary transition-colors">
+                                Hướng dẫn lập hồ sơ mời thầu qua mạng (E-HSMT) mới</h3>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">Bộ Kế hoạch và
+                                Đầu tư vừa công bố mẫu hồ sơ mời thầu mới nhất áp dụng cho hệ thống mạng đấu thầu quốc
+                                gia, tối ưu hóa quy trình nhập liệu...</p>
+                        </div>
+                        <div
+                            class="px-6 pb-6 pt-2 border-t border-outline-variant/10 flex justify-between items-center">
+                            <span class="text-xs text-outline font-medium">10/05/2024</span>
+                            <a class="text-sm font-bold text-primary flex items-center gap-1" href="#">
+                                Đọc tiếp
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="chevron_right">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- News Card 3 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                        <div class="p-6 flex-grow">
+                            <span
+                                class="text-[10px] font-bold uppercase tracking-wider bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-sm mb-4 inline-block">Phân
+                                tích</span>
+                            <h3
+                                class="font-headline font-bold text-xl mb-3 leading-tight group-hover:text-primary transition-colors">
+                                Giải đáp vướng mắc về bảo lãnh dự thầu theo luật mới</h3>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">Chuyên gia pháp
+                                lý phân tích các tình huống thực tế về việc hoàn trả bảo lãnh dự thầu và các sai sót
+                                thường gặp của nhà thầu...</p>
+                        </div>
+                        <div
+                            class="px-6 pb-6 pt-2 border-t border-outline-variant/10 flex justify-between items-center">
+                            <span class="text-xs text-outline font-medium">02/05/2024</span>
+                            <a class="text-sm font-bold text-primary flex items-center gap-1" href="#">
+                                Đọc tiếp
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="chevron_right">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#f1f4f6] dark:bg-slate-950 border-t border-[#c4c6cf]/15 full-width py-12 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="material-symbols-outlined text-[#1A365D]" data-icon="gavel">gavel</span>
+                    <span class="text-lg font-bold text-[#1A365D] font-headline">THE DIGITAL JURIST</span>
+                </div>
+                <p class="font-['Inter'] text-sm leading-relaxed text-[#43474e] dark:text-slate-500 max-w-sm mb-6">
+                    Hệ thống tra cứu Luận Đấu Thầu thông minh, ứng dụng công nghệ AI để đơn giản hóa kiến thức pháp luật
+                    cho cộng đồng.
                 </p>
-<p class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500">© 2024 The Digital Jurist. Hệ thống tra cứu Luật Đấu Thầu thông minh.</p>
-</div>
-<div>
-<h6 class="font-bold text-[#1A365D] mb-6 uppercase tracking-wider text-xs">Liên kết</h6>
-<ul class="space-y-4">
-<li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100" href="#">Về chúng tôi</a></li>
-<li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100" href="#">Điều khoản sử dụng</a></li>
-<li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100" href="#">Hướng dẫn</a></li>
-</ul>
-</div>
-<div>
-<h6 class="font-bold text-[#1A365D] mb-6 uppercase tracking-wider text-xs">Hỗ trợ</h6>
-<ul class="space-y-4">
-<li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100" href="#">Liên hệ</a></li>
-<li class="flex items-center gap-2 text-[#43474e] dark:text-slate-500 text-sm">
-<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+                <p class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500">© 2024 The Digital Jurist. Hệ thống
+                    tra cứu Luật Đấu Thầu thông minh.</p>
+            </div>
+            <div>
+                <h6 class="font-bold text-[#1A365D] mb-6 uppercase tracking-wider text-xs">Liên kết</h6>
+                <ul class="space-y-4">
+                    <li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100"
+                            href="#">Về chúng tôi</a></li>
+                    <li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100"
+                            href="#">Điều khoản sử dụng</a></li>
+                    <li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100"
+                            href="#">Hướng dẫn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h6 class="font-bold text-[#1A365D] mb-6 uppercase tracking-wider text-xs">Hỗ trợ</h6>
+                <ul class="space-y-4">
+                    <li><a class="font-['Inter'] text-sm text-[#43474e] dark:text-slate-500 hover:text-[#1A365D] transition-opacity opacity-80 hover:opacity-100"
+                            href="#">Liên hệ</a></li>
+                    <li class="flex items-center gap-2 text-[#43474e] dark:text-slate-500 text-sm">
+                        <span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
                         support@digitaljurist.vn
                     </li>
-</ul>
-</div>
-</div>
-</footer>
-</body></html>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot UI -->
+    <div id="ai-chatbot" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Button -->
+        <button id="chatbot-toggle"
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <span class="material-symbols-outlined text-3xl">chat</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chatbot-window"
+            class="hidden absolute bottom-20 right-0 w-[350px] md:w-[400px] rounded-2xl glass-effect shadow-2xl border border-white/40 overflow-hidden flex flex-col"
+            style="height: 550px; max-height: calc(100vh - 120px);">
+            <!-- Header -->
+            <div class="px-5 py-4 bg-primary text-white flex justify-between items-center rounded-t-2xl">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl">robot_2</span>
+                        </div>
+                        <span
+                            class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-primary rounded-full animate-pulse"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm tracking-wide">Trợ lý Pháp lý AI</h3>
+                        <p class="text-[10px] text-white/70">Luôn sẵn sàng hỗ trợ</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <button id="chatbot-refresh"
+                        class="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors group">
+                        <span class="material-symbols-outlined text-[20px] group-active:animate-spin">refresh</span>
+                    </button>
+                    <button id="chatbot-close"
+                        class="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div id="chatbot-messages" class="flex-grow p-4 overflow-y-auto flex flex-col gap-4 text-sm bg-white/50">
+                <!-- Initial Message -->
+                <div class="flex flex-col gap-1 items-start">
+                    <div
+                        class="bg-white border border-gray-100 px-4 py-2.5 rounded-2xl rounded-tl-sm shadow-sm text-gray-800 max-w-[85%]">
+                        <p>Xin chào! Tôi là Trợ lý Pháp lý AI. Tôi có thể giúp gì cho bạn về Luật Đấu thầu hôm nay?</p>
+                    </div>
+                    <span class="text-[10px] text-gray-500 ml-1">Vừa xong</span>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 bg-white border-t border-gray-100 rounded-b-2xl">
+                <form id="chatbot-form" class="relative flex items-center">
+                    <input type="text" id="chatbot-input"
+                        class="w-full bg-gray-50 border border-gray-200 text-gray-800 rounded-full pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 text-sm transition-all"
+                        placeholder="Nhập câu hỏi của bạn..." autocomplete="off">
+                    <button type="submit" id="chatbot-submit"
+                        class="absolute right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="material-symbols-outlined text-[18px]">send</span>
+                    </button>
+                </form>
+                <div class="text-center mt-2">
+                    <span class="text-[9px] text-gray-400">Được hỗ trợ bởi AI Chatbot GPT 5.4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./chatbot.js"></script>
+</body>
+
+</html>
